@@ -1,0 +1,38 @@
+# Example configuration for development/testing
+download_directory: './models'
+
+schedule:
+  enabled: true
+  check_interval_hours: 6  # Check every 6 hours for development
+  max_downloads_per_day: 10
+  max_model_age_days: 7  # Re-download models older than 7 days
+  run_initial_check: true
+
+models:
+  # Small models for testing
+  - name: 'microsoft/DialoGPT-small'
+    source: 'huggingface'
+    auto_download: true
+    priority: 1
+    max_age_days: 30
+  
+  - name: 'distilbert-base-uncased'
+    source: 'huggingface' 
+    auto_download: true
+    priority: 2
+    max_age_days: 14
+
+notifications:
+  enabled: true
+  log_level: 'INFO'
+  notify_on_start: true
+  notify_on_completion: true
+  notify_on_error: true
+  notify_on_progress: false
+  desktop_notifications: false
+
+download_settings:
+  max_concurrent_downloads: 1  # Keep it low for development
+  retry_attempts: 2
+  timeout_seconds: 1800  # 30 minutes
+  resume_downloads: true

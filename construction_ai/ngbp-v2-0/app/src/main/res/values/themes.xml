@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.ConstructionManager" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Basic Material theme with simple customization -->
+        <item name="android:colorPrimary">@android:color/holo_orange_dark</item>
+        <item name="android:colorPrimaryDark">@android:color/holo_orange_dark</item>
+        <item name="android:colorAccent">@android:color/holo_blue_dark</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+    </style>
+
+    <style name="Theme.ConstructionManager" parent="Base.Theme.ConstructionManager" />
+</resources>
