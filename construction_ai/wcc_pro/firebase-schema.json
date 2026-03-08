@@ -1,0 +1,8 @@
+{
+  "collections": {
+    "clients": { "fields": { "name": "string", "phone": "string", "email": "string" }},
+    "projects": { "fields": { "clientId": "string", "status": "string", "createdAt": "timestamp" }},
+    "tasks": { "fields": { "projectId": "string", "name": "string", "price": "number", "completed": "boolean" }},
+    "estimates": { "fields": { "clientId": "string", "items": "array", "total": "number" }}
+  }
+}

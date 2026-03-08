@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Network permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    
+    <!-- Storage permissions -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" 
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    
+    <!-- Audio permissions for voice input -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    
+    <!-- Camera permissions -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    
+    <!-- Location permissions (for context-aware features) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    
+    <!-- Device admin permissions for advanced features -->
+    <uses-permission android:name="android.permission.DEVICE_ADMIN" />
+    
+    <!-- Biometric authentication -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    
+    <!-- System-level permissions for advanced IDE features -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    
+    <!-- Foreground service permissions -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    
+    <!-- Wake lock for background processing -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    <!-- Vibration for notifications -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    
+    <!-- NFC for advanced features -->
+    <uses-permission android:name="android.permission.NFC" />
+    
+    <!-- Bluetooth for device communication -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    
+    <!-- USB host mode for device connections -->
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
+    
+    <!-- Hardware features -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="false" />
+
+    <application
+        android:name=".MasterCoderApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AICodeAssist"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:preserveLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AICodeAssist.NoActionBar"
+            android:screenOrientation="unspecified"
+            android:configChanges="orientation|screenSize|keyboardHidden|screenLayout"
+            android:windowSoftInputMode="adjustResize"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            
+            <!-- Handle file associations -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="file" />
+                <data android:mimeType="text/plain" />
+                <data android:pathPattern=".*\\.kt" />
+                <data android:pathPattern=".*\\.java" />
+                <data android:pathPattern=".*\\.xml" />
+                <data android:pathPattern=".*\\.gradle" />
+                <data android:pathPattern=".*\\.json" />
+            </intent-filter>
+            
+            <!-- Handle project imports -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="content" />
+                <data android:mimeType="application/zip" />
+            </intent-filter>
+            
+            <!-- Handle deep links -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https"
+                    android:host="ai-codeassist.com" />
+            </intent-filter>
+            
+            <!-- Handle custom scheme -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="aicodeassist" />
+            </intent-filter>
+        </activity>
+
+        <!-- Code Editor Activity -->
+        <activity
+            android:name=".ui.editor.CodeEditorActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AICodeAssist.NoActionBar"
+            android:screenOrientation="unspecified"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <!-- Project Manager Activity -->
+        <activity
+            android:name=".ui.project.ProjectManagerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AICodeAssist"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <!-- Settings Activity -->
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AICodeAssist"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <!-- AI Chat Activity -->
+        <activity
+            android:name=".ui.chat.AIChatActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AICodeAssist.NoActionBar"
+            android:screenOrientation="unspecified"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <!-- Terminal Activity -->
+        <activity
+            android:name=".ui.terminal.TerminalActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AICodeAssist.Terminal"
+            android:screenOrientation="unspecified"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <!-- Device Manager Activity -->
+        <activity
+            android:name=".ui.device.DeviceManagerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AICodeAssist"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <!-- Services -->
+        
+        <!-- AI Processing Service -->
+        <service
+            android:name=".service.AIProcessingService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync|microphone" />
+
+        <!-- Code Analysis Service -->
+        <service
+            android:name=".service.CodeAnalysisService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- Real-time Deployment Service -->
+        <service
+            android:name=".service.DeploymentService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- Voice Recognition Service -->
+        <service
+            android:name=".service.VoiceRecognitionService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
+        <!-- Auto-tooling Service -->
+        <service
+            android:name=".service.AutoToolingService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- Intelligence Gathering Service -->
+        <service
+            android:name=".service.IntelligenceService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- Local AI Engine Service -->
+        <service
+            android:name=".service.LocalAIService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- Data Stream Service -->
+        <service
+            android:name=".service.DataStreamService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- Broadcast Receivers -->
+        
+        <!-- Boot receiver for auto-start -->
+        <receiver
+            android:name=".receiver.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Network state receiver -->
+        <receiver
+            android:name=".receiver.NetworkStateReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- USB device receiver -->
+        <receiver
+            android:name=".receiver.UsbDeviceReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter" />
+        </receiver>
+
+        <!-- Content Providers -->
+        
+        <!-- File provider for sharing files -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- Project content provider -->
+        <provider
+            android:name=".provider.ProjectContentProvider"
+            android:authorities="${applicationId}.projects"
+            android:enabled="true"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+
+        <!-- Work Manager initialization -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+
+        <!-- App Widgets -->
+        
+        <!-- Quick Actions Widget -->
+        <receiver
+            android:name=".widget.QuickActionsWidget"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/quick_actions_widget_info" />
+        </receiver>
+
+        <!-- Code Stats Widget -->
+        <receiver
+            android:name=".widget.CodeStatsWidget"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/code_stats_widget_info" />
+        </receiver>
+
+        <!-- Shortcuts -->
+        <meta-data
+            android:name="android.app.shortcuts"
+            android:resource="@xml/shortcuts" />
+
+        <!-- App metadata -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- ML Kit metadata -->
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr,face,barcode" />
+
+        <!-- TensorFlow Lite GPU delegate -->
+        <meta-data
+            android:name="com.google.android.gms.ml.ENABLE_GPU_DELEGATE"
+            android:value="true" />
+
+        <!-- Notification channels -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <!-- Auto-backup configuration -->
+        <meta-data
+            android:name="com.google.android.backup.api_key"
+            android:value="@string/backup_api_key" />
+
+        <!-- App indexing -->
+        <meta-data
+            android:name="com.google.android.gms.appindexing.APP_ID"
+            android:value="@string/app_id" />
+
+        <!-- Security configuration -->
+        <meta-data
+            android:name="android.security.SECURITY_CONFIG"
+            android:resource="@xml/network_security_config" />
+
+    </application>
+
+    <!-- Queries for package visibility (Android 11+) -->
+    <queries>
+        <!-- Query for package managers -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.APP_MARKET" />
+        </intent>
+        
+        <!-- Query for file managers -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+            <data android:mimeType="*/*" />
+        </intent>
+        
+        <!-- Query for text editors -->
+        <intent>
+            <action android:name="android.intent.action.EDIT" />
+            <data android:mimeType="text/plain" />
+        </intent>
+        
+        <!-- Query for development tools -->
+        <package android:name="com.android.vending" />
+        <package android:name="com.google.android.apps.docs" />
+        <package android:name="com.termux" />
+        <package android:name="com.aide.ui" />
+        <package android:name="com.android.chrome" />
+        <package android:name="com.github.android" />
+        
+        <!-- Query for system apps -->
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="text/plain" />
+        </intent>
+        
+        <!-- Query for camera apps -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        
+        <!-- Query for voice recording apps -->
+        <intent>
+            <action android:name="android.provider.MediaStore.RECORD_SOUND" />
+        </intent>
+    </queries>
+
+</manifest>
+

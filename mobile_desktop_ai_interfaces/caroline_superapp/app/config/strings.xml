@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">AI Enhanced CodeAssist</string>
+    <string name="app_description">Voice-to-app generation with neural interface</string>
+    
+    <!-- Main Activity -->
+    <string name="main_title">MASTER CODER</string>
+    <string name="main_subtitle">AI-Enhanced CodeAssist</string>
+    <string name="build_from_voice">🎤 BUILD APP FROM VOICE</string>
+    <string name="listening">🎤 LISTENING...</string>
+    <string name="open_editor">💻 OPEN CODE EDITOR</string>
+    <string name="view_projects">📱 VIEW PROJECTS</string>
+    
+    <!-- Status Messages -->
+    <string name="neural_interface_ready">🧠 Neural Interface Ready</string>
+    <string name="voice_generation_active">Voice-to-app generation active</string>
+    <string name="zero_debug_enabled">Zero-debug compilation enabled</string>
+    <string name="auto_tooling_online">Auto-tooling machine online</string>
+    
+    <!-- Voice Commands -->
+    <string name="describe_idea">Describe your app idea...</string>
+    <string name="listening_for_idea">🎤 Listening for your idea...</string>
+    <string name="processing_idea">🧠 Processing your idea...</string>
+    <string name="generating_app">⚡ Generating complete app...</string>
+    <string name="compiling_zero_debug">🔧 Compiling with zero-debug...</string>
+    <string name="deploying_app">🚀 Auto-deploying...</string>
+    <string name="app_complete">🎉 App complete and ready!</string>
+    
+    <!-- Error Messages -->
+    <string name="voice_recognition_failed">Voice recognition failed - please try again</string>
+    <string name="permission_required">Microphone permission required for voice commands</string>
+    <string name="api_key_missing">API key not configured</string>
+    <string name="network_error">Network error - please check connection</string>
+    
+    <!-- Tool Creation -->
+    <string name="tool_created">🔧 Custom tool created!</string>
+    <string name="workaround_generated">🎭 Ultimate workaround generated!</string>
+    <string name="tool_evolved">🧬 Tool evolved and improved!</string>
+    
+    <!-- Permissions -->
+    <string name="permission_microphone_rationale">Microphone access is required for voice-to-app generation</string>
+    <string name="permission_storage_rationale">Storage access is required to save generated projects</string>
+    
+    <!-- Success Messages -->
+    <string name="initialization_complete">🚀 Master Coder ready!</string>
+    <string name="ai_online">AI systems online and ready</string>
+    <string name="tooling_active">Auto-tooling machine active</string>
+</resources>
+

@@ -1,0 +1,7 @@
+{
+  "create estimate": "estimates.create",
+  "add client": "crm.addClient",
+  "start project": "projects.createProject",
+  "send invoice": "finance.sendInvoice",
+  "complete task": "tasks.markComplete"
+}
